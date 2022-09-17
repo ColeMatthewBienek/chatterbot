@@ -3,6 +3,7 @@
 // and begin making requests to the Parse API for data.
 
 var App = {
+  //comments
 
   $spinner: $('.spinner img'),
 
