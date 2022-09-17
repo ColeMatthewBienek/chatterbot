@@ -14,9 +14,15 @@ var FormView = {
     // Stop the browser from submitting the form
     event.preventDefault();
 
+    const message = {
+      text:  $('#message').val(),
+      username: App.username,
+      roomname: Rooms.getSelected()
+    };
+
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
-  
+
     console.log('click!');
   },
 

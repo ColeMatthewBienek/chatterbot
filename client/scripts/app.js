@@ -21,6 +21,11 @@ var App = {
 
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+    const poll = setInterval(() => {
+      App.startSpinner();
+      App.fetch(App.stopSpinner);
+    }, 10e3)
+
   },
 
   fetch: function(callback = ()=>{}) {
@@ -28,8 +33,17 @@ var App = {
       // examine the response from the server request:
       console.log(data);
 
+      data.forEach((message) => {
+        Messages.add(message)
+        Rooms.add(message.roomname)
+      })
+
+      RoomsView.render()
+      // MessagesView.render()
+
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
+      callback()
     });
   },
 

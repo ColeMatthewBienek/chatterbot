@@ -7,24 +7,44 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    // TODO: Perform any work which needs to be done
-    // when this view loads.
+    this.$button.on('click', this.handleClick)
+    this.$select.on('change', this.handleChange)
   },
 
   render: function() {
-    // TODO: Render out the list of rooms.
+    this.$select.empty()
+
+    this.$select.append($('<option>'))
+
+    for (let room of Rooms.getAll()) {
+      this.$select.append($('<option>', {
+        text: room,
+        value: room
+      }))
+    }
   },
 
   renderRoom: function(roomname) {
-    // TODO: Render out a single room.
+    let $option = $('<option>').val(roomname).text(roomname);
+    this.$select.append($option)
   },
 
   handleChange: function(event) {
-    // TODO: Handle a user selecting a different room.
+    MessagesView.clearMessages()
+
+    const room = event.target.value
+
+    Rooms.selectRoom(room)
+
+    Messages.getRoomMessages(room).forEach(MessagesView.renderMessage.bind(MessagesView))
   },
 
   handleClick: function(event) {
-    // TODO: Handle the user clicking the "Add Room" button.
+    const room = window.prompt('Enter room name:')
+
+    Rooms.add(room)
+    Rooms.selectRoom(room)
+    RoomsView.renderRoom(room)
   }
 
 };

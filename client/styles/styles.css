@@ -46,13 +46,21 @@ body {
     line-height: 13px;
 }
 
+#main .newRoom {
+    margin-top: 1.5rem;
+}
+
+#main .newRoom button {
+    margin-left: 0.5rem;
+}
+
 form {
     padding: 20px;
     padding-left: 0;
     margin-bottom: 20px;
 }
 
-form input[type=text] {
+input[type=text] {
     margin-right: 10px;
     width: 70%;
     font-size: 12px;
